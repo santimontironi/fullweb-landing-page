@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #081f5c;
+  --color-secondary: #334eac;
+  --color-tertiary: #7096d1;
+  --color-quaternary: #d0e3ff;
+}
+
 @theme inline {
-  --font-serif: var(--font-libre-baskerville);
+  --font-sans: var(--font-poppins);
 }

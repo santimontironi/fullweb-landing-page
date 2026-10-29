@@ -12,7 +12,10 @@
 | **Nodemailer** | Enviar por email al correo de FullWeb las consultas del formulario. |
 | **Zod** | Definir y validar el esquema del formulario de contacto. |
 | **React Hook Form** | Manejar el estado y la validación del formulario en el cliente. |
+| **Bootstrap Icons** | Única fuente de íconos del sitio (elementos `<i className="bi bi-...">`). |
 
+> Dependencias instaladas: `bootstrap-icons`.
+>
 > Dependencias a instalar: `nodemailer`, `@types/nodemailer`, `zod`, `react-hook-form`, `@hookform/resolvers` (para conectar Zod con React Hook Form) y `server-only` (para impedir que código del servidor se importe en el cliente).
 
 ## Identidad visual
@@ -21,34 +24,35 @@
 
 | Rol | Color | Token |
 | --- | --- | --- |
-| Primario | `#16587B` | `--color-primary` |
-| Secundario (A) | `#84B3CE` | `--color-secondary` |
-| Secundario (B) | `#F5EEDD` | `--color-cream` |
+| 1. Primario | `#081F5C` | `--color-primary` |
+| 2. Secundario | `#334EAC` | `--color-secondary` |
+| 3. Terciario | `#7096D1` | `--color-tertiary` |
+| 4. Cuaternario | `#D0E3FF` | `--color-quaternary` |
 
-* El secundario está formado por dos colores (`#84B3CE` y `#F5EEDD`) que se usan juntos y en proporción.
-* No se usan otros colores; solo variaciones (opacidad, tonos más claros u oscuros) de estos tres.
+* La paleta tiene **4 colores** y el orden de la tabla es su **jerarquía**: el primario es el que más presencia tiene y define la identidad, y cada color siguiente tiene menos peso visual que el anterior.
+* No se usan otros colores; solo variaciones (opacidad, tonos más claros u oscuros) de estos cuatro.
 * Los colores se definen como tokens en `app/globals.css` (`@theme`) y se usan siempre mediante esos tokens.
 
 ### Tipografía
 
-* Fuente principal: **Libre Baskerville** (Google Fonts), cargada con `next/font/google` en `app/layout.tsx`.
-  * Fuente variable: pesos de 400 a 700, estilos normal e itálica, subsets `latin` y `latin-ext`.
-  * Se expone como la variable CSS `--font-libre-baskerville`.
-* En `app/globals.css` se conecta a Tailwind como `--font-serif`, por lo que se usa con la clase `font-serif`.
+* Fuente principal: **Poppins** (Google Fonts), cargada con `next/font/google` en `app/layout.tsx`.
+  * Pesos 300, 400, 500, 600 y 700, estilos normal e itálica, subsets `latin` y `latin-ext`.
+  * Se expone como la variable CSS `--font-poppins`.
+* En `app/globals.css` se conecta a Tailwind como `--font-sans`, por lo que se usa con la clase `font-sans`.
 * Se aplica por defecto a todo el sitio desde el `<body>`.
 
 ## Estructura de carpetas
 
 ```
 app/
-  layout.tsx          ← layout raíz: Navbar + Footer
+  layout.tsx          ← layout raíz: Header + Footer
   page.tsx            ← arma la landing con cada sección y su id
   globals.css
 actions/
   contact.ts          ← Server Action: valida con Zod y envía con Nodemailer
 components/
   layout/             ← componentes que envuelven la página
-    Navbar.tsx
+    Header.tsx
     Footer.tsx
   sections/           ← un componente por sección de la landing
     Hero.tsx          ← Inicio
@@ -70,7 +74,7 @@ utils/
 
 ### Convenciones de la estructura
 
-* **`components/layout`** contiene solo lo que envuelve a la página (Navbar, Footer), no las secciones.
+* **`components/layout`** contiene solo lo que envuelve a la página (Header, Footer), no las secciones.
 * **`components/sections`** contiene un componente por cada sección de la landing.
 * **`app/page.tsx`** envuelve cada sección en un `<section>` con su `id`, para que funcione la navegación por anclas:
 
@@ -172,6 +176,7 @@ SMTP_PORT=
 SMTP_USER=
 SMTP_PASS=
 CONTACT_EMAIL=   # correo de FullWeb que recibe las consultas
+NEXT_PUBLIC_SITE_URL=   # URL pública del sitio (ej. https://fullweb.com.ar), usada como metadataBase para SEO y Open Graph
 ```
 
 ## Criterios de aceptación

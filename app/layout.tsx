@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville } from "next/font/google";
+import { Poppins } from "next/font/google";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
 
-const libreBaskerville = Libre_Baskerville({
-  variable: "--font-libre-baskerville",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -17,9 +19,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${libreBaskerville.variable} h-full antialiased`}
+      className={`${poppins.variable} h-full scroll-smooth scroll-pt-28 antialiased motion-reduce:scroll-auto`}
     >
-      <body className="min-h-full flex flex-col font-serif">{children}</body>
+      <body className="min-h-full flex flex-col bg-quaternary font-sans text-primary">
+        {children}
+      </body>
     </html>
   );
 }

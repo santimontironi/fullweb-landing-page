@@ -36,9 +36,24 @@ Si algo de lo que te piden contradice estos archivos, avisalo en tu respuesta en
   <ServiceCard title="E-commerce" description="..." />
   ```
 
+### Un componente por archivo
+
+* **Nunca** definís un componente dentro del archivo de otro (por ejemplo, una tarjeta declarada dentro de `Hero.tsx`). Cada componente va en su propio archivo dentro de `components/` y se importa.
+
+### Íconos: solo Bootstrap Icons, nada de SVG
+
+* **Nunca** usás `<svg>`. Los íconos son siempre `<i className="bi bi-nombre-del-icono" aria-hidden="true" />` de Bootstrap Icons (ya instalado e importado en `app/layout.tsx`). Buscá los nombres en https://icons.getbootstrap.com/.
+* El tamaño y el color se manejan con Tailwind (`text-xl`, `text-secondary`).
+* Si un ícono es lo único dentro de un botón o link, ese elemento lleva `aria-label`.
+
+### `globals.css` mínimo
+
+* En `app/globals.css` solo van el `@import "tailwindcss"` y los tokens de `@theme` (colores y fuente). **Nunca** agregás `@keyframes`, `--animate-*`, `@utility`, clases propias ni otro CSS.
+* Todo efecto (fondos con patrones, máscaras, animaciones) se resuelve en el componente con clases de Tailwind, usando valores arbitrarios si hace falta (`bg-[repeating-linear-gradient(...)]`, `[mask-image:...]`).
+
 ### Estructura
 
-* Las secciones van en `components/sections`, Navbar y Footer en `components/layout` y los componentes reutilizables en `components/ui`.
+* Las secciones van en `components/sections`, Header y Footer en `components/layout` y los componentes reutilizables en `components/ui`.
 * Los componentes de sección **no** renderizan su propio `<section>`, porque el `<section id="...">` va en `app/page.tsx`.
 * Los componentes son Server Components por defecto. Usás `"use client"` solo cuando hace falta (estado, eventos, hooks, animaciones del lado del cliente).
 * Usás TypeScript sin `any`, componentes en `PascalCase` y textos visibles en **español**.
@@ -57,24 +72,25 @@ Si tenés disponible el skill `frontend-design:frontend-design`, cargalo antes d
 
 ### Tipografía
 
-* La fuente de FullWeb ya está definida: **Libre Baskerville**. Ya está cargada en `app/layout.tsx` con `next/font/google`, conectada en `app/globals.css` como `font-serif` y aplicada por defecto en el `<body>`. No la vuelvas a importar ni la reemplaces.
-* Es variable: podés usar cualquier peso entre 400 y 700 (`font-normal`, `font-medium`, `font-semibold`, `font-bold`) y también itálica (`italic`).
+* La fuente de FullWeb ya está definida: **Poppins**. Ya está cargada en `app/layout.tsx` con `next/font/google`, conectada en `app/globals.css` como `font-sans` y aplicada por defecto en el `<body>`. No la vuelvas a importar ni la reemplaces.
+* Está cargada con los pesos 300, 400, 500, 600 y 700 (`font-light`, `font-normal`, `font-medium`, `font-semibold`, `font-bold`) y también en itálica (`italic`).
 * **No agregues otras fuentes** sin que se actualice antes el spec.
-* Usá la tipografía como elemento de diseño: tamaños grandes, contraste entre pesos, itálicas con intención, tracking y leading cuidados, y titulares que impacten. Una serif clásica bien usada puede verse muy moderna.
+* Usá la tipografía como elemento de diseño: tamaños grandes, contraste entre pesos, itálicas con intención, tracking y leading cuidados, y titulares que impacten. Una sans geométrica como Poppins luce mejor con pesos medios, tracking ajustado y buen contraste de tamaños.
 
 ### Color
 
-* La paleta de FullWeb tiene **3 colores** y es obligatoria:
+* La paleta de FullWeb tiene **4 colores** y es obligatoria. El orden de la tabla es su **jerarquía** y se respeta:
 
   | Rol | Color | Token sugerido |
   | --- | --- | --- |
-  | Primario | `#16587B` | `--color-primary` |
-  | Secundario (A) | `#84B3CE` | `--color-secondary` |
-  | Secundario (B) | `#F5EEDD` | `--color-cream` |
+  | 1. Primario | `#081F5C` | `--color-primary` |
+  | 2. Secundario | `#334EAC` | `--color-secondary` |
+  | 3. Terciario | `#7096D1` | `--color-tertiary` |
+  | 4. Cuaternario | `#D0E3FF` | `--color-quaternary` |
 
-* El **secundario son dos colores que funcionan juntos**: `#84B3CE` y `#F5EEDD` se usan en conjunto y en proporción, como una dupla, no como colores aislados.
-* Definí estos colores como **tokens** en `app/globals.css` con `@theme` de Tailwind v4 y usá esos tokens en las clases (`bg-primary`, `text-cream`, etc.). Nunca pongas valores hex sueltos en los componentes.
-* **No agregues otros colores.** Solo se permiten variaciones de estos tres (opacidades, o tonos más claros u oscuros derivados de ellos), por ejemplo para hovers, bordes o texto sobre fondos claros.
+* **Jerarquía:** el primario (`#081F5C`) es el color dominante y define la identidad; el secundario (`#334EAC`) es el acento principal (botones, links, destacados); el terciario (`#7096D1`) es un acento de apoyo (detalles, bordes, íconos); y el cuaternario (`#D0E3FF`) es el más suave (fondos claros, superficies y texto sobre fondos oscuros). Ningún color de menor jerarquía debe pesar más que uno de mayor jerarquía.
+* Definí estos colores como **tokens** en `app/globals.css` con `@theme` de Tailwind v4 y usá esos tokens en las clases (`bg-primary`, `text-quaternary`, etc.). Nunca pongas valores hex sueltos en los componentes.
+* **No agregues otros colores.** Solo se permiten variaciones de estos cuatro (opacidades, o tonos más claros u oscuros derivados de ellos), por ejemplo para hovers, bordes o texto sobre fondos claros.
 * Que la paleta sea fija no significa que el diseño sea genérico: jugá con la proporción, los contrastes y los bloques de color para que el sitio tenga carácter.
 * **Prohibido** introducir gradientes violetas, grises sin carácter o colores ajenos a la paleta.
 * Mantené un contraste accesible (WCAG AA) para el texto.
@@ -90,8 +106,8 @@ Si tenés disponible el skill `frontend-design:frontend-design`, cargalo antes d
 
 ### Detalles, profundidad y movimiento
 
-* Sumá textura y profundidad: patrones, ruido o grano, bordes marcados, sombras con intención, formas o SVG propios.
-* Las animaciones tienen que tener sentido: una entrada orquestada en el hero, revelado de secciones al hacer scroll y hover states cuidados en botones, links y tarjetas. Preferí CSS y transiciones de Tailwind; si hace falta JS, que sea liviano.
+* Sumá textura y profundidad: patrones con gradientes de Tailwind, bordes marcados, sombras con intención y formas hechas con elementos HTML (bordes punteados, `rounded-*`, gradientes cónicos o radiales con valores arbitrarios).
+* Las animaciones tienen que tener sentido: hover states cuidados en botones, links y tarjetas, y detalles con las animaciones que trae Tailwind (`animate-pulse`, `animate-ping`, `animate-bounce`, `animate-spin`) y transiciones.
 * Respetá `prefers-reduced-motion`: con esa preferencia activada las animaciones se reducen o desactivan.
 * **Prohibido** usar emojis como íconos e ilustraciones o íconos genéricos de stock como recurso principal.
 
