@@ -1,5 +1,6 @@
 import ContactForm from "@/components/ui/ContactForm";
 import ContactItem from "@/components/ui/ContactItem";
+import Reveal from "@/components/ui/Reveal";
 
 const headingClass =
   "text-lg font-semibold text-quaternary underline decoration-tertiary/60 decoration-2 underline-offset-8";
@@ -22,7 +23,9 @@ const Contact = () => {
       </h2>
 
       <div className="mx-auto mt-16 grid max-w-6xl gap-14 lg:grid-cols-[2fr_1fr] lg:gap-20">
-        <ContactForm />
+        <Reveal>
+          <ContactForm />
+        </Reveal>
 
         <div className="flex flex-col gap-12 lg:pt-7">
           <div>

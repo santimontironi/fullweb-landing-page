@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const headingClass = "text-sm font-semibold tracking-[0.2em] text-primary uppercase";
 
@@ -10,10 +11,10 @@ const Footer = () => {
     <footer className="bg-[color-mix(in_oklab,var(--color-quaternary)_40%,white)] bg-linear-to-b from-transparent from-30% to-tertiary/50 px-5 pt-20 md:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 xl:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
         <div>
-          <a href="/#inicio" className="inline-flex items-center gap-3 text-lg font-semibold tracking-tight text-primary">
+          <Link href="/#inicio" className="inline-flex items-center gap-3 text-lg font-semibold tracking-tight text-primary">
             <Image src="/images/logo.webp" alt="" width={467} height={460} className="h-10 w-auto" />
             FullWeb
-          </a>
+          </Link>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-primary/70">
             Desarrollo de software a medida para que tu negocio crezca en la web.
           </p>
@@ -22,10 +23,10 @@ const Footer = () => {
         <nav aria-label="Pie de página">
           <h2 className={headingClass}>Navegación</h2>
           <div className="mt-5 flex flex-col items-start gap-3">
-            <a href="/#inicio" className={linkClass}>Inicio</a>
-            <a href="/#por-que-elegirnos" className={linkClass}>¿Por qué elegirnos?</a>
-            <a href="/#servicios" className={linkClass}>Servicios</a>
-            <a href="/#contacto" className={linkClass}>Contacto</a>
+            <Link href="/#inicio" className={linkClass}>Inicio</Link>
+            <Link href="/#por-que-elegirnos" className={linkClass}>¿Por qué elegirnos?</Link>
+            <Link href="/#servicios" className={linkClass}>Servicios</Link>
+            <Link href="/#contacto" className={linkClass}>Contacto</Link>
           </div>
         </nav>
 

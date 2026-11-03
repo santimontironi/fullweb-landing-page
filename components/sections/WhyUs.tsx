@@ -1,3 +1,4 @@
+import Reveal from "@/components/ui/Reveal";
 import WhyUsCard from "@/components/ui/WhyUsCard";
 
 const WhyUs = () => {
@@ -13,7 +14,7 @@ const WhyUs = () => {
         <span aria-hidden="true" className="mx-auto mt-4 block h-px w-full bg-primary/25" />
       </div>
 
-      <div className="mx-auto mt-16 grid max-w-7xl md:grid-cols-2 md:*:last:col-span-2 xl:grid-cols-5 xl:*:last:col-span-1 2xl:max-w-360">
+      <Reveal className="mx-auto mt-16 grid max-w-7xl md:grid-cols-2 md:*:last:col-span-2 xl:grid-cols-5 xl:*:last:col-span-1 2xl:max-w-360">
         <WhyUsCard
           background="bg-white"
           number="01"
@@ -51,7 +52,7 @@ const WhyUs = () => {
           description="Después del lanzamiento seguimos cerca: soporte, mejoras y ajustes para que tu proyecto siga creciendo."
           icon="bi-rocket-takeoff"
         />
-      </div>
+      </Reveal>
     </div>
   );
 };

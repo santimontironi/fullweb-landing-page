@@ -1,4 +1,5 @@
 import Button from "@/components/ui/Button";
+import Reveal from "@/components/ui/Reveal";
 import ServiceCard from "@/components/ui/ServiceCard";
 
 const Services = () => {
@@ -16,7 +17,7 @@ const Services = () => {
         </span>
       </h2>
 
-      <div className="mx-auto mt-16 grid max-w-7xl gap-6 md:grid-cols-2 md:*:last:col-span-2 xl:grid-cols-5 xl:*:last:col-span-1 2xl:max-w-360">
+      <Reveal className="mx-auto mt-16 grid max-w-7xl gap-6 md:grid-cols-2 md:*:last:col-span-2 xl:grid-cols-5 xl:*:last:col-span-1 2xl:max-w-360">
         <ServiceCard
           icon="bi-display"
           title="Desarrollo web"
@@ -42,7 +43,7 @@ const Services = () => {
           title="Mantenimiento y soporte"
           description="Te acompañamos después del lanzamiento con actualizaciones, mejoras y soporte continuo."
         />
-      </div>
+      </Reveal>
 
       <div className="mt-14 flex justify-center">
         <Button href="#contacto">

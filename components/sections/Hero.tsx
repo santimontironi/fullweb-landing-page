@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import Reveal from "@/components/ui/Reveal";
 
 const Hero = () => {
   return (
@@ -25,6 +26,7 @@ const Hero = () => {
       <span aria-hidden="true" className="absolute bottom-20 left-[55%] size-1 rounded-full bg-tertiary motion-safe:animate-pulse" />
       <span aria-hidden="true" className="absolute bottom-28 left-[60%] size-1 rounded-full bg-quaternary/70 motion-safe:animate-pulse" />
 
+      <Reveal className="flex flex-col items-center">
       <p className="flex items-center gap-3 text-xs font-medium tracking-[0.3em] text-tertiary uppercase md:gap-4 md:text-sm 2xl:text-base">
         <span aria-hidden="true" className="h-px w-8 bg-linear-to-r from-transparent to-tertiary md:w-12" />
         Desarrollo de software a medida
@@ -46,6 +48,8 @@ const Hero = () => {
         Diseñamos y desarrollamos sitios web, aplicaciones y sistemas pensados para
         tu negocio: rápidos, claros y listos para automatizar tus procesos.
       </p>
+
+      </Reveal>
 
       <div className="mt-10 flex flex-col gap-4 md:flex-row">
         <Button href="#contacto">

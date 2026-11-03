@@ -69,6 +69,7 @@ components/
     Button.tsx
     ContactForm.tsx
     ContactItem.tsx
+    Reveal.tsx        ← fade al entrar en pantalla, se repite en cada scroll (IntersectionObserver + transiciones de Tailwind)
     ServiceCard.tsx
     WhatsAppButton.tsx
     WhyUsCard.tsx
