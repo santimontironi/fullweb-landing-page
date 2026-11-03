@@ -31,6 +31,7 @@
 
 * La paleta tiene **4 colores** y el orden de la tabla es su **jerarquía**: el primario es el que más presencia tiene y define la identidad, y cada color siguiente tiene menos peso visual que el anterior.
 * No se usan otros colores; solo variaciones (opacidad, tonos más claros u oscuros) de estos cuatro.
+  * **Única excepción:** el botón flotante de WhatsApp (`WhatsAppButton.tsx`) usa el verde de la marca WhatsApp (`#25D366`) con el ícono en blanco.
 * Los colores se definen como tokens en `app/globals.css` (`@theme`) y se usan siempre mediante esos tokens.
 
 ### Tipografía
@@ -46,8 +47,13 @@
 ```
 app/
   layout.tsx          ← layout raíz: Header + Footer
-  page.tsx            ← arma la landing con cada sección y su id
+  page.tsx            ← arma la landing con cada sección y su id + datos estructurados JSON-LD
   globals.css
+  robots.ts           ← reglas de rastreo + link al sitemap
+  sitemap.ts          ← sitemap.xml con la URL del sitio
+  not-found.tsx       ← página 404 (usa Header y Footer del layout)
+  icon.png            ← favicon (192×192, generado desde el logo)
+  apple-icon.png      ← ícono para iOS (180×180, fondo blanco)
 actions/
   contact.ts          ← Server Action: valida con Zod y envía con Nodemailer
 components/
@@ -61,9 +67,11 @@ components/
     Contact.tsx       ← Contacto
   ui/                 ← componentes reutilizables
     Button.tsx
-    Input.tsx
-    Textarea.tsx
     ContactForm.tsx
+    ContactItem.tsx
+    ServiceCard.tsx
+    WhatsAppButton.tsx
+    WhyUsCard.tsx
 schemas/
   contact.schema.ts   ← schema de Zod del formulario + tipo inferido
 types/
@@ -176,7 +184,7 @@ SMTP_PORT=
 SMTP_USER=
 SMTP_PASS=
 CONTACT_EMAIL=   # correo de FullWeb que recibe las consultas
-NEXT_PUBLIC_SITE_URL=   # URL pública del sitio (ej. https://fullweb.com.ar), usada como metadataBase para SEO y Open Graph
+NEXT_PUBLIC_SITE_URL=   # URL pública del sitio (en producción: https://fullwebportfolio.com), usada como metadataBase para SEO y Open Graph
 ```
 
 ## Criterios de aceptación
